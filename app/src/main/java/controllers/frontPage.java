@@ -8,16 +8,18 @@ import android.view.View;
 
 import com.example.besammen.R;
 
-public class FrontPage extends AppCompatActivity {
+public class frontPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+
     }
 
     public void goToSignUp(View view){
-        Intent intentToSignUp = new Intent(this, SignUp.class);
+        Intent intentToSignUp = new Intent(this, signUp.class);
         startActivity(intentToSignUp);
     }
 }

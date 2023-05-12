@@ -12,10 +12,16 @@
         android:theme="@style/Theme.BeSammen"
         tools:targetApi="31">
         <activity
-            android:name="controllers.SignUp"
+            android:name="controllers.startPage"
             android:exported="false" />
         <activity
-            android:name="controllers.FrontPage"
+            android:name="controllers.logIn"
+            android:exported="false" />
+        <activity
+            android:name="controllers.signUp"
+            android:exported="false" />
+        <activity
+            android:name="controllers.frontPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
