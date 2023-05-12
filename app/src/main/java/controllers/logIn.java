@@ -51,7 +51,7 @@ public class logIn extends AppCompatActivity {
 
     private void authenticateUser(){
         EditText etLoginUsernameOrEmail = findViewById(R.id.etEmail);
-        EditText etPassword = findViewById(R.id.etPassword);
+        EditText etPassword = findViewById(R.id.editTextPassword);
 
         String usernameOrEmail = etLoginUsernameOrEmail.getText().toString();
         String password = etPassword.getText().toString();

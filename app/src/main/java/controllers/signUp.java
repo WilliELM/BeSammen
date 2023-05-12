@@ -63,13 +63,16 @@ public class signUp extends AppCompatActivity {
 
         EditText etusername = findViewById(R.id.editTextNavn);
         EditText etEMail = findViewById(R.id.editTextEmail);
+        EditText etPassword = findViewById(R.id.editTextPassword);
         EditText etGodkendtPassword = findViewById(R.id.editTextGodkendtPassword);
+
 
         String username = etusername.getText().toString();
         String eMail = etEMail.getText().toString();
+        String password = etPassword.getText().toString();
         String godkendtPassword = etGodkendtPassword.getText().toString();
 
-        if (username.isEmpty() || eMail.isEmpty() || godkendtPassword.isEmpty()){
+        if (username.isEmpty() || eMail.isEmpty() || password.isEmpty() || godkendtPassword.isEmpty()){
             Toast.makeText(signUp.this, "For at komme videre skal du udfylde alle felterne", Toast.LENGTH_LONG).show();
             return;
         }
