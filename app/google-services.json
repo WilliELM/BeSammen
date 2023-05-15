@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "920919914313",
+    "firebase_url": "https://besammen-556e7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "besammen-556e7",
+    "storage_bucket": "besammen-556e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920919914313:android:ac4a7467ad6b8f39414c98",
+        "android_client_info": {
+          "package_name": "com.example.besammen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920919914313-gkjsc4dhrovr6bo6qtlbj1j3fooo735h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZEf5xP8zp9hhWGYbinm8KSnwYt96eK8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920919914313-gkjsc4dhrovr6bo6qtlbj1j3fooo735h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
