@@ -25,12 +25,17 @@ public class logIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
+/*
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null){
             finish();
             return;
         }
+
+
+
+ */
+        mAuth =FirebaseAuth.getInstance();
 
         Button logInBtn = findViewById(R.id.logInBtn);
         logInBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,12 +83,18 @@ public class logIn extends AppCompatActivity {
     private void redirectToRegister(){
         Intent intentToRegister = new Intent(this, signUp.class);
         startActivity(intentToRegister);
+       /*
         finish();
+
+        */
     }
 
     private void redirectToStartPage(){
         Intent intentToStartPage = new Intent(this,startPage.class);
         startActivity(intentToStartPage);
+        /*
         finish();
+
+         */
     }
 }

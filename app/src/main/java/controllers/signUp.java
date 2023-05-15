@@ -33,16 +33,20 @@ public class signUp extends AppCompatActivity {
         // intialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
         // Hvis brugeren allerede er authenticated, så lukker man den her aktivitet
+        /*
         if (mAuth.getCurrentUser() != null ){
             finish();
             return;
         }
+
+         */
 
         Button registrerBtn = findViewById(R.id.registrerBtn);
         registrerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registerUser();
+                redirectToLogIn();
             }
         });
 
@@ -57,7 +61,6 @@ public class signUp extends AppCompatActivity {
 
     }
 
-
     // https://firebase.google.com/docs/auth/android/password-auth#java_1
     private void registerUser(){
 
@@ -65,7 +68,6 @@ public class signUp extends AppCompatActivity {
         EditText etEMail = findViewById(R.id.editTextEmail);
         EditText etPassword = findViewById(R.id.editTextPassword);
         EditText etGodkendtPassword = findViewById(R.id.editTextGodkendtPassword);
-
 
         String username = etusername.getText().toString();
         String eMail = etEMail.getText().toString();
@@ -88,7 +90,10 @@ public class signUp extends AppCompatActivity {
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
+                                            /*
                                             redirectToLogIn ();
+
+                                             */
                                         }
                                     });
                         } else {
@@ -101,6 +106,6 @@ public class signUp extends AppCompatActivity {
     private void redirectToLogIn(){
         Intent intentToLogIn = new Intent(this, logIn.class);
         startActivity(intentToLogIn);
-        finish();
+        System.out.println("hello");
     }
 }

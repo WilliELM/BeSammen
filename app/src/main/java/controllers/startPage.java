@@ -23,6 +23,7 @@ import data.User;
 public class startPage extends AppCompatActivity {
 
     TextView tvUsername,tvEmail,tvGodkendtPassword;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +31,17 @@ public class startPage extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
 
+        /*
         if (currentUser == null){
             Intent intentToLogIn = new Intent(startPage.this, logIn.class);
             startActivity(intentToLogIn);
             finish();
             return;
         }
+
+         */
+
+        mAuth = FirebaseAuth.getInstance();
 
         tvUsername = findViewById(R.id.tvUsername);
         tvEmail = findViewById(R.id.tvEmail);
@@ -73,7 +79,6 @@ public class startPage extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         Intent intentToLogIn = new Intent(startPage.this, logIn.class);
         startActivity(intentToLogIn);
-        finish();
         return;
     }
 }
