@@ -3,11 +3,17 @@ package controllers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.besammen.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +29,7 @@ import data.User;
 public class startPage extends AppCompatActivity {
 
     TextView tvUsername,tvEmail,tvGodkendtPassword;
+    Spinner spinnerDiagnose;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,23 @@ public class startPage extends AppCompatActivity {
         setContentView(R.layout.activity_start_page);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
+
+        ///////////// DIAGNOSE VALG /////////////
+
+        spinnerDiagnose = findViewById(R.id.spinnerDiagnose);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.diagnoseArray, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+
+        adapter.add(getString(R.string.placeholder_diagnose));
+
+        adapter.addAll(getResources().getStringArray(R.array.diagnoseArray));
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerDiagnose.setAdapter(adapter);
+
+
+
 
         /*
         if (currentUser == null){
@@ -43,9 +67,11 @@ public class startPage extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        /*
         tvUsername = findViewById(R.id.tvUsername);
         tvEmail = findViewById(R.id.tvEmail);
         tvGodkendtPassword = findViewById(R.id.tvGodkendtPassword);
+        */
 
         Button logOutBtn = findViewById(R.id.logOutBtn);
         logOutBtn.setOnClickListener(new View.OnClickListener() {
