@@ -15,4 +15,28 @@ public class User {
         this.eMail = eMail;
         this.godkendtPassword = godkendtPassword;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public String getGodkendtPassword() {
+        return godkendtPassword;
+    }
+
+    public void setGodkendtPassword(String godkendtPassword) {
+        this.godkendtPassword = godkendtPassword;
+    }
 }
