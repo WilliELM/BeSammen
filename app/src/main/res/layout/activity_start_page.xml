@@ -24,29 +24,21 @@
             android:textStyle="bold"
             android:gravity="center"/>
 
-        <TextView
-            android:id="@+id/tvUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Username:" />
 
         <TextView
-            android:id="@+id/tvEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="E-mail:" />
+            android:layout_margin="20dp"
+            android:text="Vælg din diagnose for at blive tildelt en støttegruppe"/>
 
-        <TextView
-            android:id="@+id/tvGodkendtPassword"
+
+        <Spinner
+            android:id="@+id/spinnerDiagnose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Godkendt password:" />
+            android:autofillHints="Diagnose"
+            />
+
 
         <Button
             android:id="@+id/logOutBtn"
@@ -55,5 +47,13 @@
             android:layout_marginLeft="250dp"
             android:layout_marginTop="300dp"
             android:text="Log out" />
+
+        <Button
+            android:id="@+id/submitDataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mød din støttegruppe!" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
