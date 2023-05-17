@@ -24,6 +24,7 @@ public class signUp extends AppCompatActivity {
     // https://www.youtube.com/watch?v=LeIFNsiKmVY&ab_channel=BoostMyTool
 
     private FirebaseAuth mAuth;
+    private String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,7 @@ public class signUp extends AppCompatActivity {
         String eMail = etEMail.getText().toString();
         String password = etPassword.getText().toString();
         String godkendtPassword = etGodkendtPassword.getText().toString();
+        userName = username;
 
         if (username.isEmpty() || eMail.isEmpty() || password.isEmpty() || godkendtPassword.isEmpty()){
             Toast.makeText(signUp.this, "For at komme videre skal du udfylde alle felterne", Toast.LENGTH_LONG).show();
@@ -105,7 +107,13 @@ public class signUp extends AppCompatActivity {
 
     private void redirectToLogIn(){
         Intent intentToLogIn = new Intent(this, logIn.class);
+        intentToLogIn.putExtra("userName", userName);
         startActivity(intentToLogIn);
-        System.out.println("hello");
+        System.out.println(userName);
+        System.out.println(userName);
+        System.out.println(userName);
+        System.out.println(userName);
+        System.out.println(userName);
+
     }
 }

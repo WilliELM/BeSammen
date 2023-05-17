@@ -20,11 +20,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class logIn extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        Intent usernameIntent = getIntent();
+        String userName = usernameIntent.getStringExtra("userName");
+        username = userName;
+
 /*
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null){
@@ -91,7 +95,10 @@ public class logIn extends AppCompatActivity {
 
     private void redirectToStartPage(){
         Intent intentToStartPage = new Intent(this,startPage.class);
+
+        intentToStartPage.putExtra("userName", username);
         startActivity(intentToStartPage);
+
         /*
         finish();
 
