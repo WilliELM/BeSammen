@@ -25,8 +25,8 @@ jobs:
         with:
           args: build
           
-      - name: Push changes to default branch
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+      - name: Push changes to default target branch
+        run: |
+          set -ex
+          TARGET_BRANCH=$( gh repo view --json defaultBranchRef --jq .defaultBranchRef.name )
+          git push ${ORIGIN} ${{github.ref_name}}:${TARGET_BRANCH}
