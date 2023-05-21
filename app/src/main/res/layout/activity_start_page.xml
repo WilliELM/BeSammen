@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context="controllers.startPage">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/startpage"/>
 
     <LinearLayout
         android:layout_width="409dp"
@@ -18,8 +24,8 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:text="Velkommen"
+            android:layout_margin="35dp"
+            android:text=""
             android:textSize="40dp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -28,31 +34,37 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Vælg din diagnose for at blive tildelt en støttegruppe"/>
+            android:layout_marginTop="50dp"
+            android:text="Vælg din diagnose for at blive tildelt en støttegruppe"
+            />
 
 
         <Spinner
             android:id="@+id/spinnerDiagnose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:autofillHints="Diagnose"
             />
 
+        <Button
+            android:id="@+id/submitDataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mød din støttegruppe!"
+            android:textColor="#000000"
+            />
 
         <Button
             android:id="@+id/logOutBtn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
-            android:layout_marginTop="300dp"
-            android:text="Log out" />
+            android:layout_marginTop="250dp"
+            android:text="Log ud"
+            android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/submitDataBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mød din støttegruppe!" />
+
 
 
     </LinearLayout>

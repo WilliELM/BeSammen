@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">BeSammen</string>
-    <string name="placeholder_diagnose">Vælg diagnose</string>
+    <string name="placeholder_diagnose">Klik her for at vælge diagnose</string>
     <string-array name="diagnoseArray">
         <item>Brystkræft</item>
         <item>Lungekræft</item>
