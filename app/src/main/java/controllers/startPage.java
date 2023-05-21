@@ -50,6 +50,11 @@ public class startPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+        Button logOutBtn2 = findViewById(R.id.logOutBtn);
+        logOutBtn2.setBackgroundColor(getResources().getColor(android.R.color.white));
+        Button submitDataBtn = findViewById(R.id.submitDataBtn);
+        submitDataBtn.setBackgroundColor(getResources().getColor(android.R.color.white));
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         Intent usernameIntent = getIntent();
