@@ -1,2 +1,3 @@
-package data;public class data {
+package data;
+public class data {
 }

@@ -5,5 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="controllers.UserPage">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/minside"/>
+
+    <ListView
+        android:id="@+id/group_container"
+        android:layout_width="427dp"
+        android:layout_height="505dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginBottom="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_container_groups" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

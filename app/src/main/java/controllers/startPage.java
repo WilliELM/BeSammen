@@ -86,19 +86,23 @@ public class startPage extends AppCompatActivity {
                 Toast.makeText(startPage.this, "Du skal vælge en diagnose", Toast.LENGTH_SHORT).show();
             }
         });
-        userToFirebase = new UserToFirebase();
+
         //userToFirebase.setDiagnose(spinnerDiagnose.toString());
         System.out.println(diagnose);
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
         Button submitData = findViewById(R.id.submitDataBtn);
+        Intent intentToUserPage = new Intent(this, UserPage.class);
+
         submitData.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                userToFirebase.setName(username);
-                userToFirebase.setDiagnose(diagnose);
+                userToFirebase = new UserToFirebase(username,diagnose);
                 db.push().setValue(userToFirebase);
                 System.out.println(username);
                 System.out.println(userToFirebase.getDiagnose().toString());
+                intentToUserPage.putExtra("diagnose",userToFirebase.getDiagnose());
+                intentToUserPage.putExtra("username", userToFirebase.getName());
+                startActivity(intentToUserPage);
             }
         });
 
