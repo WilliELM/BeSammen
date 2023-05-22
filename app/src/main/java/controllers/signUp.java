@@ -25,6 +25,8 @@ public class signUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private String userName;
+    private String autologinEmail;
+    private String autologinPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +77,9 @@ public class signUp extends AppCompatActivity {
         String password = etPassword.getText().toString();
         String godkendtPassword = etGodkendtPassword.getText().toString();
         userName = username;
+        autologinEmail = eMail;
+        autologinPassword = password;
+
 
         if (username.isEmpty() || eMail.isEmpty() || password.isEmpty() || godkendtPassword.isEmpty()){
             Toast.makeText(signUp.this, "For at komme videre skal du udfylde alle felterne", Toast.LENGTH_LONG).show();
@@ -108,6 +113,8 @@ public class signUp extends AppCompatActivity {
     private void redirectToLogIn(){
         Intent intentToLogIn = new Intent(this, logIn.class);
         intentToLogIn.putExtra("userName", userName);
+        intentToLogIn.putExtra("email", autologinEmail);
+        intentToLogIn.putExtra("password", autologinPassword);
         startActivity(intentToLogIn);
         System.out.println(userName);
         System.out.println(userName);
