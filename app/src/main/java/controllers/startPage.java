@@ -44,7 +44,8 @@ public class startPage extends AppCompatActivity {
     UserToFirebase userToFirebase;
     String diagnose;
     private String username;
-
+    private String autologinEmail;
+    private String autologinPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,13 @@ public class startPage extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
-        Intent usernameIntent = getIntent();
-        String userName = usernameIntent.getStringExtra("userName");
+        Intent userDataIntent = getIntent();
+        String userName = userDataIntent.getStringExtra("userName");
         username = userName;
+        String eMail = userDataIntent.getStringExtra("email");
+        autologinEmail = eMail;
+        String passWord = userDataIntent.getStringExtra("password");
+        autologinPassword = passWord;
 
 
         ///////////// DIAGNOSE VALG /////////////
@@ -102,6 +107,11 @@ public class startPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 userToFirebase = new UserToFirebase(username,diagnose);
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("firstTimeLaunch", false);
+                editor.apply();
+
                 db.push().setValue(userToFirebase);
                 System.out.println(username);
                 System.out.println(userToFirebase.getDiagnose().toString());
@@ -163,7 +173,21 @@ public class startPage extends AppCompatActivity {
 
 
     private void logoutUser(){
+
+        //FJERNER GEMT DATA NÅR MAN LOGGER UD
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences.Editor editor2 = sharedPreferences.edit();
+
+        editor.clear();
+        editor.apply();
+        editor2.clear();
+        editor2.apply();
+
         FirebaseAuth.getInstance().signOut();
+
+
         Intent intentToLogIn = new Intent(startPage.this, logIn.class);
         startActivity(intentToLogIn);
         return;

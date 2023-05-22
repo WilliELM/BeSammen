@@ -5,10 +5,12 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.besammen.R;
 
@@ -20,6 +22,23 @@ public class frontPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        // Checker om det er første gang man bruger appen, skifter til "false" når vedkommende har logget ind og valgt diagnose.
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        boolean firstTimeLaunch = preferences.getBoolean("firstTimeLaunch", true);
+        if(firstTimeLaunch){
+            System.out.println("FØRSTE GANGS USER");
+            System.out.println("FØRSTE GANGS USER");
+            System.out.println("FØRSTE GANGS USER");
+            System.out.println("FØRSTE GANGS USER");
+            System.out.println("FØRSTE GANGS USER");
+        }
+        else{
+            Intent intent = new Intent(this, logIn.class);
+            startActivity(intent);
+            finish();
+        }
+
         /*
 
         Button registrerBtn = findViewById(R.id.registerBtn);
