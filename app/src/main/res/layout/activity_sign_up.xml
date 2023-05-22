@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="controllers.signUp">
+    tools:context="controllers.signUp"
+    android:background="@drawable/background_intro">
 
 
     <LinearLayout
@@ -17,10 +18,13 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="103dp"
+            android:layout_height="109dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="65dp"
             android:gravity="center"
-            android:text="SignUp"
-            android:textSize="33dp"
+            android:text="Signup"
+            android:textColor="@color/black"
+            android:textSize="45sp"
             android:textStyle="bold">
 
         </TextView>
@@ -67,7 +71,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="22dp"
-            android:text="Registrer" />
+            android:text="Registrer"
+            android:textColor="@color/black"
+            android:background="@drawable/buttondesignfrontpage"
+            app:backgroundTint="@null"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -82,7 +89,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Log-in" />
+            android:text="Log-in"
+            android:background="@drawable/buttondesignfrontpage"
+            app:backgroundTint = "@null"
+            android:textColor="@color/black"/>
 
 
     </LinearLayout>

@@ -11,15 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/forsidebesammen">
+        android:src="@drawable/besammen_forside">
 
     </ImageView>
 
     <Button
-        android:id="@+id/registerBtn"
-        android:layout_width="205dp"
-        android:layout_height="70dp"
+        android:id="@+id/logInBtn"
+        android:layout_width="180dp"
+        android:layout_height="55dp"
         android:background="@drawable/buttondesignfrontpage"
+        android:onClick="goToLogIn"
+        android:text="Log ind"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.948" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="180dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="-5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/buttondesignfrontpage"
+        android:onClick="goToSignUp"
         android:text="Registrer"
         android:textColor="@color/black"
         app:backgroundTint="@null"
@@ -28,8 +47,7 @@
         app:layout_constraintHorizontal_bias="0.828"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982"
-        android:onClick="goToSignUp"/>
+        app:layout_constraintVertical_bias="0.982" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

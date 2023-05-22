@@ -15,12 +15,16 @@ import com.example.besammen.R;
 
 import java.util.ArrayList;
 
+import controllers.Userlistener;
+
 public class GroupAdapter extends ArrayAdapter<UserToFirebase> {
     private ArrayList<UserToFirebase> itemList;
 
 
+
     public GroupAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull ArrayList<UserToFirebase> objects) {
         super(context, resource, textViewResourceId, objects);
+
     }
 
     @NonNull

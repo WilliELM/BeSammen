@@ -54,4 +54,9 @@ public class frontPage extends AppCompatActivity {
         startActivity(intentToSignUp);
         Log.d(TAG, "goToSignUp: hello");
     }
+
+    public void goToLogIn(View v){
+        Intent intentToLogIn = new Intent(this, logIn.class);
+        startActivity(intentToLogIn);
+    }
 }
