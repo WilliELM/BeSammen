@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="controllers.logIn">
+    tools:context="controllers.logIn"
+    android:background="@drawable/background_intro">
 
     <LinearLayout
         android:layout_width="409dp"
@@ -17,11 +18,13 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:text="Log-in "
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="65dp"
             android:gravity="center"
-            android:textSize="30dp"
-            android:textStyle="bold"/>
+            android:text="Log-in "
+            android:textColor="@color/black"
+            android:textSize="45sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/etEmail"
@@ -46,7 +49,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
-            android:text="Log ind" />
+            android:text="Log ind"
+            android:textColor="@color/black"
+            android:background="@drawable/buttondesignfrontpage"
+            app:backgroundTint = "@null"
+            />
 
         <TextView
             android:id="@+id/textView3"
@@ -62,6 +69,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="55dp"
-            android:text="Registrer" />
+            android:text="Registrer"
+            android:textColor="@color/black"
+            android:background="@drawable/buttondesignfrontpage"
+            app:backgroundTint = "@null"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,12 +9,13 @@ import android.widget.AdapterView;
 import com.example.besammen.R;
 import java.util.ArrayList;
 import data.GroupAdapter;
+import data.User;
 import data.UserToFirebase;
 import com.example.besammen.databinding.ActivityUserPageBinding;
 import com.google.firebase.FirebaseApp;
 
 
-public class UserPage extends AppCompatActivity {
+public class UserPage extends AppCompatActivity implements Userlistener {
     private ArrayList<UserToFirebase> itemList;
     ActivityUserPageBinding binding;
 
@@ -38,9 +39,9 @@ public class UserPage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //intent til ny activity skal indsættes her!!!!
-                Intent intent = new Intent(UserPage.this,SelectedGroup.class);
-                intent.putExtra("diagnose",diagnose);
-                startActivity(intent);
+                Intent intentToChat = new Intent(UserPage.this, ChatActivity.class);
+                intentToChat.putExtra("diagnose",diagnose);
+                startActivity(intentToChat);
             }
         });
 
@@ -52,6 +53,10 @@ public class UserPage extends AppCompatActivity {
         itemList.add(userToFirebase);
 
 
+    }
+
+    @Override
+    public void onUserClicked(User user) {
 
     }
 }
