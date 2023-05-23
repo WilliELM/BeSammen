@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -16,8 +17,6 @@ import android.widget.TextView;
 
 import com.example.besammen.R;
 import com.example.besammen.databinding.ActivityChatBinding;
-import com.example.besammen.databinding.ActivitySelectedGroupBinding;
-import com.example.besammen.databinding.ActivityUserPageBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +35,8 @@ import java.util.UUID;
 import data.GroupAdapter;
 import data.Message;
 import data.ReceiverAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -60,7 +61,14 @@ public class ChatActivity extends AppCompatActivity {
         binding.getRoot();
 
 
-        Intent intent = this.getIntent();
+
+        SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
+        SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
+        String username = savedUsername.getString("username","");
+        String diagnose = diagnoseCache.getString("diagnoseCache","");
+
+        binding.diagnose.setText(diagnose);
+        /*Intent intent = this.getIntent();
         if (intent != null){
 
             diagnose = intent.getStringExtra("diagnose");
@@ -72,15 +80,7 @@ public class ChatActivity extends AppCompatActivity {
 
         getMessages();
 
-
-        FrameLayout sendInput = findViewById(R.id.layoutSend);
-        sendInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               sendMessage();
-
-            }
-        });
+*/
     }
 
 

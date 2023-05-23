@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -90,6 +91,11 @@ public class UserPage extends AppCompatActivity implements Userlistener {
                     }
                 });
 */
+
+        SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
+        SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
+        String username = savedUsername.getString("username","");
+        String diagnose = diagnoseCache.getString("diagnoseCache","");
         binding.groupContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

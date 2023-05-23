@@ -8,6 +8,7 @@ public class User {
 
     public User () {
 
+
     }
 
     public User(String username, String eMail, String godkendtPassword) {

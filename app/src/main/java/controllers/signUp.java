@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +50,6 @@ public class signUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerUser();
-                redirectToLogIn();
             }
         });
 
@@ -65,7 +65,7 @@ public class signUp extends AppCompatActivity {
     }
 
     // https://firebase.google.com/docs/auth/android/password-auth#java_1
-    private void registerUser(){
+    private void registerUser() {
 
         EditText etusername = findViewById(R.id.editTextNavn);
         EditText etEMail = findViewById(R.id.editTextEmail);
@@ -76,39 +76,54 @@ public class signUp extends AppCompatActivity {
         String eMail = etEMail.getText().toString();
         String password = etPassword.getText().toString();
         String godkendtPassword = etGodkendtPassword.getText().toString();
+
         userName = username;
         autologinEmail = eMail;
         autologinPassword = password;
 
 
-        if (username.isEmpty() || eMail.isEmpty() || password.isEmpty() || godkendtPassword.isEmpty()){
+        if (username.isEmpty() || eMail.isEmpty() || password.isEmpty() || godkendtPassword.isEmpty()) {
             Toast.makeText(signUp.this, "For at komme videre skal du udfylde alle felterne", Toast.LENGTH_LONG).show();
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(eMail, godkendtPassword)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            User user = new User(username,eMail,godkendtPassword);
-                            FirebaseDatabase.getInstance().getReference("users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            /*
-                                            redirectToLogIn ();
 
-                                             */
-                                        }
-                                    });
-                        } else {
-                            Toast.makeText(signUp.this,"Authentication fejlede",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-    }
+        if (password.length() >= 6 && password.equals(godkendtPassword)) {
+                mAuth.createUserWithEmailAndPassword(eMail, godkendtPassword)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    User user = new User(username,eMail,godkendtPassword);
+                                    SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = savedUsername.edit();
+                                    editor.putString("username", username);
+                                    editor.apply();
+                                    FirebaseDatabase.getInstance().getReference("users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    redirectToLogIn ();
+                                                }
+                                            });
+                                } else {
+                                    Toast.makeText(signUp.this,"Authentication fejlede",Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                        });
+        } else {
+            if (password.length() < 6) {
+                Toast.makeText(getApplicationContext(), "Kodeordet skal være længere end 6 karaktere", Toast.LENGTH_SHORT).show();
+
+            }
+            Toast.makeText(getApplicationContext(), "Kodeordene matcher ikke", Toast.LENGTH_SHORT).show();
+        }
+                etPassword.setText("");
+                etGodkendtPassword.setText("");
+                return;
+            }
 
     private void redirectToLogIn(){
         Intent intentToLogIn = new Intent(this, logIn.class);
