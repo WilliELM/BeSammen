@@ -28,5 +28,5 @@ jobs:
       - name: Push changes to default target branch
         run: |
           set -ex
-          TARGET_BRANCH=$( gh repo view --json defaultBranchRef --jq .defaultBranchRef.name )
-          git push ${ORIGIN} ${{github.ref_name}}:${TARGET_BRANCH}
+          TARGET_BRANCH=$(gh repo view --json default_branch_ref --jq .default_branch_ref.name)
+          git push origin ${{ github.ref }}:${TARGET_BRANCH}}
