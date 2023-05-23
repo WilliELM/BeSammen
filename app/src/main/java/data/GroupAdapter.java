@@ -1,6 +1,7 @@
 package data;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class GroupAdapter extends ArrayAdapter<UserToFirebase> {
 
 
 
+
+
     public GroupAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull ArrayList<UserToFirebase> objects) {
         super(context, resource, textViewResourceId, objects);
 
@@ -38,6 +41,10 @@ public class GroupAdapter extends ArrayAdapter<UserToFirebase> {
             ImageView groupPic =  convertView.findViewById(R.id.pictures);
             TextView diagnose = convertView.findViewById(R.id.diagnose);
             TextView titel = convertView.findViewById(R.id.titelOfGroup);
+
+
+            SharedPreferences diagnoseCache = getContext().getSharedPreferences("CachedDiagnose", Context.MODE_PRIVATE);
+            String cachedDiagnose = diagnoseCache.getString("diagnoseCache", "");
 
             //set views til brugerens valg
             diagnose.setText("Støttegruppe for " + userFirebase.getDiagnose().toLowerCase());

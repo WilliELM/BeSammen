@@ -111,12 +111,20 @@ public class startPage extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("firstTimeLaunch", false);
                 editor.apply();
+                SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
+                SharedPreferences.Editor editor2 = diagnoseCache.edit();
+                editor2.putString("diagnoseCache",diagnose);
+                editor2.apply();
+                // HENT BRUGERNAVN OG DIAGNOSE
+                SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
+                String userTest = savedUsername.getString("username","");
+                String diagnose = diagnoseCache.getString("diagnoseCache","");
 
                 db.push().setValue(userToFirebase);
                 System.out.println(username);
                 System.out.println(userToFirebase.getDiagnose().toString());
-                intentToUserPage.putExtra("diagnose",userToFirebase.getDiagnose());
-                intentToUserPage.putExtra("username", userToFirebase.getName());
+                intentToUserPage.putExtra("diagnose",diagnose);
+                intentToUserPage.putExtra("username", userTest);
                 startActivity(intentToUserPage);
             }
         });

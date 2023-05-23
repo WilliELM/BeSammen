@@ -2,6 +2,7 @@ package controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,8 +34,10 @@ public class UserPage extends AppCompatActivity implements Userlistener {
         binding.getRoot();
 
         Intent intentFromStartPage = getIntent();
-        String username = intentFromStartPage.getStringExtra("username");
-        String diagnose = intentFromStartPage.getStringExtra("diagnose");
+        SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
+        SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
+        String username = savedUsername.getString("username","");
+        String diagnose = diagnoseCache.getString("diagnoseCache","");
         binding.groupContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

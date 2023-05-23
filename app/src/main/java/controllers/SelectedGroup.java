@@ -3,6 +3,7 @@ package controllers;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -19,7 +20,14 @@ public class SelectedGroup extends AppCompatActivity {
         binding = ActivitySelectedGroupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Intent intent = this.getIntent();
+
+        SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
+        SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
+        String username = savedUsername.getString("username","");
+        String diagnose = diagnoseCache.getString("diagnoseCache","");
+
+        binding.diagnose.setText(diagnose);
+        /*Intent intent = this.getIntent();
         if (intent != null){
 
             String diagnose = intent.getStringExtra("diagnose");
@@ -29,6 +37,6 @@ public class SelectedGroup extends AppCompatActivity {
            // Glide.with(imageView.getContext()).load(picture).into(imageView);
 
 
-        }
+        }*/
     }
 }
