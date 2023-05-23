@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Indtast kodeord"
             android:inputType="textPassword" />
 
         <EditText
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Godkend password"
+            android:hint="Bekræft kodeord"
             android:inputType="textPassword" />
 
         <Button

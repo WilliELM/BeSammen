@@ -121,10 +121,6 @@ public class startPage extends AppCompatActivity {
             }
         });
 
-
-
-
-
         /*
         if (currentUser == null){
             Intent intentToLogIn = new Intent(startPage.this, logIn.class);
@@ -141,7 +137,8 @@ public class startPage extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         tvEmail = findViewById(R.id.tvEmail);
         tvGodkendtPassword = findViewById(R.id.tvGodkendtPassword);
-        */
+
+         */
 
         Button logOutBtn = findViewById(R.id.logOutBtn);
         logOutBtn.setOnClickListener(new View.OnClickListener() {
@@ -157,11 +154,6 @@ public class startPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                if (user != null){
-                    tvUsername.setText("Username: " + user.username);
-                    tvEmail.setText("E-mail: " + user.eMail);
-                    tvGodkendtPassword.setText("Godkendt Password: " + user.godkendtPassword);
-                }
             }
 
             @Override
