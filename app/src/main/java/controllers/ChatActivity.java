@@ -42,8 +42,10 @@ public class ChatActivity extends AppCompatActivity {
 
     ActivityChatBinding binding;
     String diagnose;
+    String username;
     private ArrayList<Message> itemList;
     Message message;
+    ReceiverAdapter receiverAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +58,20 @@ public class ChatActivity extends AppCompatActivity {
         itemList = new ArrayList<>();
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        ReceiverAdapter receiverAdapter = new ReceiverAdapter(ChatActivity.this,R.layout.item_container_recieved_message,R.id.dateandtime_id,itemList);
+        //ReceiverAdapter receiverAdapter = new ReceiverAdapter(ChatActivity.this,R.layout.item_container_recieved_message,R.id.dateandtime_id,itemList);
+        //binding.containerMessages.setAdapter(receiverAdapter);
+        //binding.getRoot();
+        receiverAdapter = new ReceiverAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList);
         binding.containerMessages.setAdapter(receiverAdapter);
-        binding.getRoot();
+
+
 
 
 
         SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
         SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
-        String username = savedUsername.getString("username","");
-        String diagnose = diagnoseCache.getString("diagnoseCache","");
+        username = savedUsername.getString("username","");
+        diagnose = diagnoseCache.getString("diagnoseCache","");
 
         binding.diagnose.setText(diagnose);
         /*Intent intent = this.getIntent();
@@ -81,6 +87,7 @@ public class ChatActivity extends AppCompatActivity {
         getMessages();
 
 */
+        getMessages();
     }
 
 
@@ -104,7 +111,7 @@ public class ChatActivity extends AppCompatActivity {
 
         //skal laves til korrekte username
         //lav variabel der henter fra firebase on create ??
-        Message newMessage = new Message("willi",currentdate.toString(),inputText);
+        Message newMessage = new Message(username,currentdate.toString(),inputText);
 
         db.collection(diagnose.toLowerCase()).document(uniqueID)
                 .set(newMessage)
@@ -124,6 +131,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void getMessages(){
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(diagnose.toLowerCase())
                 .get()
@@ -131,20 +139,20 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 message = new Message(document.getString("username"), document.getString("date"), document.getString("message"));
                                 itemList.add(message);
 
-                                System.out.println(itemList);
-                                System.out.println(itemList);
-                                System.out.println(itemList);
-                                System.out.println(itemList);
-                                System.out.println(itemList);
-
+                            }
+                            receiverAdapter.notifyDataSetChanged(); // Update the adapter's data
+                            for (Message message : itemList) {
+                                System.out.println("TESTER LIGE ALLE BESKEDER");
 
                             }
+
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }

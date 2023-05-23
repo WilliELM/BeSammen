@@ -67,8 +67,7 @@ public class UserPage extends AppCompatActivity implements Userlistener {
         binding.getRoot();
 
         Intent intentFromStartPage = getIntent();
-        String username = intentFromStartPage.getStringExtra("username");
-        String diagnose = intentFromStartPage.getStringExtra("diagnose");
+
 
        /* db.collection(diagnose)
                 .get()
