@@ -12,7 +12,7 @@ import com.example.besammen.databinding.ActivitySelectedGroupBinding;
 
 public class ChatActivity extends AppCompatActivity {
 
-    ActivitySelectedGroupBinding binding;
+    ActivityChatBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         // Den går bare over i den William har lavet førhen
         // Vi skal tjekke op på det her, før det kan virke ->>
-        binding = ActivitySelectedGroupBinding.inflate(getLayoutInflater());
+        binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Intent intent = this.getIntent();
