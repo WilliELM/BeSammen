@@ -75,7 +75,7 @@ public class logIn extends AppCompatActivity {
         String checker = sharedPreferences.getString("name", "");
         if(checker.equals("user")){
             //ÆNDRE HER FOR AT SKIFTE TIL ANDET INTENT ---------------------------------------------
-            Intent intentToSelectedGroup = new Intent(this, startPage.class);
+            Intent intentToSelectedGroup = new Intent(this, UserPage.class);
             intentToSelectedGroup.putExtra("username", username);
             Toast.makeText(this, "LOGIN SUCCESSFULL", Toast.LENGTH_SHORT).show();
             startActivity(intentToSelectedGroup);
