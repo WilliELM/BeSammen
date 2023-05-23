@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class ReceiverAdapter extends ArrayAdapter<Message> {
     ArrayList<Message> itemList;
 
+
     public ReceiverAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull ArrayList<Message> objects) {
         super(context, resource, textViewResourceId, objects);
     }
@@ -36,7 +37,7 @@ public class ReceiverAdapter extends ArrayAdapter<Message> {
             ViewMessage.setText(message.getMessage());
             ViewDate.setText(message.getDate());
 
-            notifyDataSetChanged();
+            //notifyDataSetChanged();
         }
         return super.getView(position, convertView, parent);
 
