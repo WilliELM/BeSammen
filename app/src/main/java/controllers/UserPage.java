@@ -1,18 +1,34 @@
 package controllers;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.example.besammen.R;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import data.GroupAdapter;
 import data.User;
 import data.UserToFirebase;
 import com.example.besammen.databinding.ActivityUserPageBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class UserPage extends AppCompatActivity implements Userlistener {
@@ -23,6 +39,23 @@ public class UserPage extends AppCompatActivity implements Userlistener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+      /*  db.collection("brystkræft").document(String.valueOf(501923))
+                .set(brystkræft)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+
+       */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_page);
         itemList = new ArrayList<>();
@@ -35,6 +68,28 @@ public class UserPage extends AppCompatActivity implements Userlistener {
         Intent intentFromStartPage = getIntent();
         String username = intentFromStartPage.getStringExtra("username");
         String diagnose = intentFromStartPage.getStringExtra("diagnose");
+
+       /* db.collection(diagnose)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+*/
         binding.groupContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
