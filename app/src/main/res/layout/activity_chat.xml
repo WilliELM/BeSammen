@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@color/white"
     tools:context="controllers.ChatActivity">
+
 
     <View
         android:id="@+id/viewBackground"
@@ -80,7 +82,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
+
     <ListView
+
         android:id="@+id/container_messages"
         android:layout_width="388dp"
         android:layout_height="530dp"
@@ -89,9 +93,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diagnose"
-        tools:listitem="@layout/item_container_recieved_message">
+        tools:listitem="@layout/item_container_recieved_message"
+        >
 
     </ListView>
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -117,6 +123,7 @@
         >
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/testbtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_4sdp"
