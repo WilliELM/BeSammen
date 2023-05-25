@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -65,8 +66,7 @@ public class ChatActivity extends AppCompatActivity {
         itemList2 = new ArrayList<>();
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        receiverAdapter = new ReceiverAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList);
-        senderAdapter = new SenderAdapter(ChatActivity.this, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
+        // senderAdapter = new SenderAdapter(ChatActivity.this, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
         //compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
 
 
@@ -76,12 +76,14 @@ public class ChatActivity extends AppCompatActivity {
         SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
 
         thisUsername = savedUsername.getString("username", "");
+
         diagnose = diagnoseCache.getString("diagnoseCache", "");
         binding.diagnose.setText(diagnose);
+        receiverAdapter = new ReceiverAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, thisUsername);
 
 
         getMessages();
-        getMyMessages();
+        //getMyMessages();
 
 
 
@@ -141,7 +143,7 @@ public class ChatActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(diagnose.toLowerCase())
-                .whereNotEqualTo("username", thisUsername)
+                //.whereNotEqualTo("username", thisUsername)
                 //.orderBy(date, Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
