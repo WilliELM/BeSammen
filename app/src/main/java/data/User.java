@@ -7,7 +7,7 @@ public class User {
     public String godkendtPassword;
 
     public User () {
-
+    // HEj Willy
 
     }
 
