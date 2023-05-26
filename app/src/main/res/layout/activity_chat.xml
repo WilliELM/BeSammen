@@ -90,6 +90,13 @@
         android:background="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/container_messages"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/container_messages"/>
+
+
     <ListView
 
         android:id="@+id/container_messages"
@@ -101,6 +108,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diagnose"
         tools:listitem="@layout/item_container_sent_message"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
 
         >
 

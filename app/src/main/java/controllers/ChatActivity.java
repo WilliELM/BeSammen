@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.UUID;
 
@@ -124,6 +125,7 @@ public class ChatActivity extends AppCompatActivity {
 
         db.collection(diagnose.toLowerCase()).document(uniqueID)
                 .set(newMessage)
+
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -144,7 +146,7 @@ public class ChatActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(diagnose.toLowerCase())
                 //.whereNotEqualTo("username", thisUsername)
-                //.orderBy(date, Query.Direction.DESCENDING)
+                .orderBy("date", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -162,8 +164,6 @@ public class ChatActivity extends AppCompatActivity {
                                     Message messageObj = new Message(firebaseUsername, date, message);
                                     itemList.add(messageObj);
                                     getMessagesComplete = true;
-                                    updateAdapter();
-
                                 } catch (JSONException e) {
                                     Log.e(TAG, "Error parsing JSON", e);
                                 }
@@ -187,7 +187,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void getMyMessages() {
+  /*  private void getMyMessages() {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(diagnose.toLowerCase())
@@ -231,5 +231,7 @@ public class ChatActivity extends AppCompatActivity {
             compositeAdapter.updateData();
         }
     }
+
+   */
 
 }

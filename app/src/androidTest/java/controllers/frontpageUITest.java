@@ -31,12 +31,11 @@ public class frontpageUITest {
     @Rule
     public IntentsTestRule<frontPage> activityRule = new IntentsTestRule<>(frontPage.class);
 
-
-
     @Test
     public void frontPageRegisterTest() {
         onView(withId(R.id.registerBtn)).perform(click());
         intended(hasComponent(signUp.class.getName()));
+
 
     }
     @Test
@@ -44,7 +43,5 @@ public class frontpageUITest {
         onView(withId(R.id.logInBtn)).perform(click());
         intended(hasComponent(logIn.class.getName()));
     }
-
-
 
 }
