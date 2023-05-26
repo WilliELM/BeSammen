@@ -176,6 +176,7 @@ public class ChatActivity extends AppCompatActivity {
 
         db.collection(diagnose.toLowerCase()).document(uniqueID)
                 .set(newMessage)
+
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -192,4 +193,6 @@ public class ChatActivity extends AppCompatActivity {
     }
 }
 
+   
 
+}

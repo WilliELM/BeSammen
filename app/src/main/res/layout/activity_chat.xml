@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/white"
+    android:background="#CAE5E3"
     tools:context="controllers.ChatActivity">
 
 
@@ -69,6 +69,8 @@
         app:layout_constraintStart_toEndOf="@id/imageBack"
         app:layout_constraintTop_toTopOf="@id/imageBack" />
 
+
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageOfGroup"
         android:layout_width="match_parent"
@@ -82,6 +84,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/container_messages"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/container_messages"/>
+
 
     <ListView
 
@@ -94,6 +108,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diagnose"
         tools:listitem="@layout/item_container_sent_message"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
 
         >
 

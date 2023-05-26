@@ -4,7 +4,9 @@ on:
   push:
     branches-ignore:
       - master
-
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
