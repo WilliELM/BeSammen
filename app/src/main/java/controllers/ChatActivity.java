@@ -19,13 +19,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 import data.CompositeAdapter;
@@ -67,7 +75,7 @@ public class ChatActivity extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         // senderAdapter = new SenderAdapter(ChatActivity.this, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
-        //compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
+       // compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
 
 
 
@@ -79,11 +87,13 @@ public class ChatActivity extends AppCompatActivity {
 
         diagnose = diagnoseCache.getString("diagnoseCache", "");
         binding.diagnose.setText(diagnose);
-        receiverAdapter = new ReceiverAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, thisUsername);
+        //receiverAdapter = new ReceiverAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, thisUsername);
+        //compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, R.layout.item_container_sent_message, R.id.textMessage, thisUsername);
+        //binding.containerMessages.setAdapter(compositeAdapter);
 
-
-        getMessages();
+        //getMessages();
         //getMyMessages();
+        getMessagesTest();
 
 
 
@@ -100,6 +110,48 @@ public class ChatActivity extends AppCompatActivity {
         });
 
     }
+    private void getMessagesTest() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection(diagnose.toLowerCase())
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e(TAG, "Error listening for messages", error);
+                            return;
+                        }
+
+                        if (value != null) {
+                            itemList.clear();
+
+                            for (QueryDocumentSnapshot document : value) {
+                                try {
+                                    JSONObject jsonMessage = new JSONObject(document.getData());
+                                    firebaseUsername = jsonMessage.getString("username");
+                                    String date = document.getString("date");
+                                    String message = jsonMessage.getString("message");
+                                    message = message.replaceAll("[\\n\\r]", ""); // Remove line breaks
+                                    Message messageObj = new Message(firebaseUsername, date, message);
+                                    itemList.add(messageObj);
+
+                                } catch (JSONException e) {
+                                    Log.e(TAG, "Error parsing JSON", e);
+                                }
+                            }
+
+                            if (compositeAdapter == null) {
+                                compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_sent_message, R.id.textMessage, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, thisUsername);
+                                binding.containerMessages.setAdapter(compositeAdapter);
+                            } else {
+                                compositeAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
+    }
+
+
+
 
 
     private void sendMessage() {
@@ -138,98 +190,6 @@ public class ChatActivity extends AppCompatActivity {
                 });
         inputFelt.setText("");
     }
-
-    private void getMessages() {
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(diagnose.toLowerCase())
-                //.whereNotEqualTo("username", thisUsername)
-                //.orderBy(date, Query.Direction.DESCENDING)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            itemList.clear();
-
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                try {
-                                    JSONObject jsonMessage = new JSONObject(document.getData());
-                                    firebaseUsername = jsonMessage.getString("username");
-                                    date = jsonMessage.getString("date");
-                                    String message = jsonMessage.getString("message");
-                                    message = message.replaceAll("[\\n\\r]", ""); // Remove line breaks
-                                    Message messageObj = new Message(firebaseUsername, date, message);
-                                    itemList.add(messageObj);
-                                    getMessagesComplete = true;
-                                    updateAdapter();
-
-                                } catch (JSONException e) {
-                                    Log.e(TAG, "Error parsing JSON", e);
-                                }
-
-
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                //message = new Message(document.getString("username"), document.getString("date"), document.getString("message"));
-                                //itemList.add(message);
-                                binding.containerMessages.setAdapter(receiverAdapter);
-
-                                receiverAdapter.notifyDataSetChanged();
-                                //compositeAdapter.notifyDataSetChanged();
-
-                            }
-
-
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-
-                    }
-                });
-    }
-    private void getMyMessages() {
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(diagnose.toLowerCase())
-                .whereEqualTo("username", thisUsername)
-                //.orderBy(date, Query.Direction.DESCENDING)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            //itemList.clear();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                try {
-                                    JSONObject jsonMessage = new JSONObject(document.getData());
-                                    firebaseUsername = jsonMessage.getString("username");
-                                    date = jsonMessage.getString("date");
-                                    String message = jsonMessage.getString("message");
-                                    message = message.replaceAll("[\\n\\r]", ""); // Remove line breaks
-                                    Message messageObj = new Message(firebaseUsername, date, message);
-                                    itemList2.add(messageObj);
-                                    getMessagesComplete = true;
-                                    updateAdapter();
-                                } catch (JSONException e) {
-                                    Log.e(TAG, "Error parsing JSON", e);
-                                }
-
-                                binding.containerMessages.setAdapter(senderAdapter);
-                                senderAdapter.notifyDataSetChanged();
-                                //compositeAdapter.notifyDataSetChanged();
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-
-                    }
-                });
-    }
-
-    private void updateAdapter() {
-        if (getMessagesComplete && getMyMessagesComplete) {
-            compositeAdapter.updateData();
-        }
-    }
-
 }
+
+
