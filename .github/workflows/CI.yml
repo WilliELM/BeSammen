@@ -43,4 +43,4 @@ jobs:
         if: success()
         run: |
           set -ex
-          git push origin --delete ${{ github.ref }}
+          git push origin --delete "${GITHUB_REF#refs/heads/}"
