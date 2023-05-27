@@ -37,4 +37,4 @@ jobs:
         run: |
           set -ex
           TARGET_BRANCH=${{ steps.default_branch.outputs.branch }}
-          git push origin ${{ github.ref }}:${TARGET_BRANCH}}
+           git push origin ${{ github.ref }}:${TARGET_BRANCH}
