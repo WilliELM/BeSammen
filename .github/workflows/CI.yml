@@ -4,9 +4,10 @@ on:
   push:
     branches-ignore:
       - master
+
 env:
-  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-  
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -16,19 +17,24 @@ jobs:
         with:
           token: ${{ secrets.MY_TOKEN || github.token }}
           fetch-depth: 0
+
+      - name: Get default branch name
+        id: default_branch
+        run: echo "::set-output name=branch::$(git remote show origin | awk '/HEAD branch/ {print $NF}')"
+
       - name: Rebase branch
         run: |
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git config --global user.name "${GITHUB_ACTOR}"
-          git rebase origin/master
-          
+          git rebase origin/${{ steps.default_branch.outputs.branch }}
+
       - name: Build code
         uses: gradle/gradle-build-action@v2
         with:
           args: build
-          
+
       - name: Push changes to default target branch
         run: |
           set -ex
-          TARGET_BRANCH=$(gh repo view --json default_branch_ref --jq .default_branch_ref.name)
+          TARGET_BRANCH=${{ steps.default_branch.outputs.branch }}
           git push origin ${{ github.ref }}:${TARGET_BRANCH}}
