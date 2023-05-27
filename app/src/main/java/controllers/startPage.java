@@ -146,6 +146,7 @@ public class startPage extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvGodkendtPassword = findViewById(R.id.tvGodkendtPassword);
 
+
          */
 
         Button logOutBtn = findViewById(R.id.logOutBtn);
