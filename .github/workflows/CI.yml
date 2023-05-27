@@ -38,3 +38,9 @@ jobs:
           set -ex
           TARGET_BRANCH=${{ steps.default_branch.outputs.branch }}
            git push origin ${{ github.ref }}:${TARGET_BRANCH}
+           
+      - name: Delete issue branch
+        if: success()
+        run: |
+          set -ex
+          git push origin --delete ${{ github.ref }}
