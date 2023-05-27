@@ -92,7 +92,7 @@ public class startPage extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Håndter, hvis intet element er valgt (valgfrit)
+                // Håndter, hvis intet element er valgt
                 Toast.makeText(startPage.this, "Du skal vælge en diagnose", Toast.LENGTH_SHORT).show();
             }
         });

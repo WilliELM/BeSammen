@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 
 import com.example.besammen.R;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,28 +37,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class UserPage extends AppCompatActivity implements Userlistener {
     private ArrayList<UserToFirebase> itemList;
     ActivityUserPageBinding binding;
+    Button logOutAndClearCacheBtn;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-      /*  db.collection("brystkræft").document(String.valueOf(501923))
-                .set(brystkræft)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-
-       */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_page);
         itemList = new ArrayList<>();
@@ -112,7 +99,35 @@ public class UserPage extends AppCompatActivity implements Userlistener {
         UserToFirebase userToFirebase = new UserToFirebase(username,diagnose);
         itemList.add(userToFirebase);
 
+        Button logOutBtn = findViewById(R.id.logOutBtn2);
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutUser1();
+            }
+        });
+    }
 
+
+
+
+
+
+    private void logoutUser1(){
+
+        //FJERNER GEMT DATA NÅR MAN LOGGER UD
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences.Editor editor2 = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+        editor2.clear();
+        editor2.apply();
+        FirebaseAuth.getInstance().signOut();
+        Intent intentToLogIn = new Intent(UserPage.this, logIn.class);
+        startActivity(intentToLogIn);
+        return;
     }
 
     @Override

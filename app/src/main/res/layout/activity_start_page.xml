@@ -53,6 +53,8 @@
             android:layout_height="wrap_content"
             android:text="Mød din støttegruppe!"
             android:textColor="#000000"
+            android:background="@drawable/buttondesignfrontpage"
+            app:backgroundTint = "@null"
             />
 
         <Button
@@ -60,11 +62,12 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="250dp"
             android:text="Log ud"
-            android:textColor="#000000" />
-
-
+            android:textColor="#000000"
+            android:background="@drawable/buttondesignfrontpage"
+            app:backgroundTint = "@null"/>
 
 
     </LinearLayout>

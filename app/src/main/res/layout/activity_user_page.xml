@@ -15,14 +15,32 @@
     <ListView
         android:id="@+id/group_container"
         android:layout_width="427dp"
-        android:layout_height="505dp"
+        android:layout_height="400dp"
         android:layout_marginTop="67dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_container_groups" />
+
+    <Button
+        android:id="@+id/logOutBtn2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="128dp"
+        android:text="Log ud"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="@drawable/buttondesignfrontpage"
+        app:backgroundTint = "@null"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
