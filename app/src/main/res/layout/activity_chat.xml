@@ -7,7 +7,10 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="#CAE5E3"
-    tools:context="controllers.ChatActivity">
+    tools:context="controllers.ChatActivity"
+    android:name="controllers.ChatActivity"
+    android:windowSoftInputMode="adjustPan">
+
 
 
     <View
@@ -84,46 +87,36 @@
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/container_messages"/>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/container_messages"/>
+        app:layout_constraintTop_toBottomOf="@id/diagnose"
+        />
 
 
     <ListView
 
         android:id="@+id/container_messages"
-        android:layout_width="388dp"
-        android:layout_height="530dp"
-        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:isScrollContainer="true"
         android:orientation="vertical"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
+        app:layout_constraintBottom_toTopOf="@+id/inputMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diagnose"
-        tools:listitem="@layout/item_container_sent_message"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"
-
-        >
+        tools:listitem="@layout/item_container_sent_message">
 
     </ListView>
 
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
-        app:layout_constraintEnd_toEndOf="@+id/viewBackground"
-        app:layout_constraintStart_toStartOf="@+id/viewBackground"
-        app:layout_constraintTop_toTopOf="@+id/viewBackground"/>
 
     <FrameLayout
         android:id="@+id/layoutSend"
@@ -161,7 +154,7 @@
         android:layout_marginRight="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_12sdp"
         android:background="@drawable/background_chat_input"
-        android:hint="Type a message"
+        android:hint="Skriv en besked"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="text"
