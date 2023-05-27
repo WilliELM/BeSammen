@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,6 +89,17 @@ public class ChatActivity extends AppCompatActivity {
 
 
         FrameLayout testbtn = findViewById(R.id.layoutSend);
+        View arrowbtn = findViewById(R.id.imageBack);
+        Intent intentToUserpage = new Intent(this, UserPage.class);
+        arrowbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(intentToUserpage);
+                Toast.makeText(ChatActivity.this, "Returned to userpage", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +111,8 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+
+
 
     }
     private void getMessagesTest() {
