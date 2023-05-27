@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -50,18 +51,16 @@ public class ChatActivity extends AppCompatActivity {
     String diagnose;
     String thisUsername;
     String firebaseUsername;
-    String date;
+    Timestamp currentTimestamp;
+    Long numericTimestamp;
+    Date date;
+    String numericTimestampToString;
 
 
     private ArrayList<Message> itemList;
-    private ArrayList<Message> itemList2;
     Message message;
-    ReceiverAdapter receiverAdapter;
-    SenderAdapter senderAdapter;
     CompositeAdapter compositeAdapter;
 
-    boolean getMessagesComplete = false;
-    boolean getMyMessagesComplete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +70,8 @@ public class ChatActivity extends AppCompatActivity {
 
 
         itemList = new ArrayList<>();
-        itemList2 = new ArrayList<>();
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        // senderAdapter = new SenderAdapter(ChatActivity.this, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
-       // compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, R.layout.item_container_sent_message, R.id.textMessage, itemList2);
 
 
 
@@ -87,12 +83,6 @@ public class ChatActivity extends AppCompatActivity {
 
         diagnose = diagnoseCache.getString("diagnoseCache", "");
         binding.diagnose.setText(diagnose);
-        //receiverAdapter = new ReceiverAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, thisUsername);
-        //compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, R.layout.item_container_sent_message, R.id.textMessage, thisUsername);
-        //binding.containerMessages.setAdapter(compositeAdapter);
-
-        //getMessages();
-        //getMyMessages();
         getMessagesTest();
 
 
@@ -106,6 +96,7 @@ public class ChatActivity extends AppCompatActivity {
                 // For example, show a toast message
                 sendMessage();
                 Toast.makeText(ChatActivity.this, "VIRKER", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -113,6 +104,7 @@ public class ChatActivity extends AppCompatActivity {
     private void getMessagesTest() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection(diagnose.toLowerCase())
+                .orderBy("orderingDate", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -128,16 +120,19 @@ public class ChatActivity extends AppCompatActivity {
                                 try {
                                     JSONObject jsonMessage = new JSONObject(document.getData());
                                     firebaseUsername = jsonMessage.getString("username");
-                                    String date = document.getString("date");
+                                    date = document.getDate("date");
+                                    //numericTimestamp = document.getLong("orderingDate");
                                     String message = jsonMessage.getString("message");
                                     message = message.replaceAll("[\\n\\r]", ""); // Remove line breaks
-                                    Message messageObj = new Message(firebaseUsername, date, message);
+                                    Message messageObj = new Message(firebaseUsername, date, numericTimestamp, message);
                                     itemList.add(messageObj);
+                                    System.out.println(messageObj);
 
                                 } catch (JSONException e) {
                                     Log.e(TAG, "Error parsing JSON", e);
                                 }
                             }
+
 
                             if (compositeAdapter == null) {
                                 compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_sent_message, R.id.textMessage, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, thisUsername);
@@ -164,7 +159,16 @@ public class ChatActivity extends AppCompatActivity {
 
 
         //Date
-        Date currentdate = new Date();
+        date = new Date();
+        numericTimestamp = date.getTime();
+        numericTimestampToString = numericTimestamp.toString();
+
+
+        System.out.println(numericTimestamp);
+        System.out.println(date);
+
+
+
 
         //Unique ID
         String uniqueID = UUID.randomUUID().toString();
@@ -172,7 +176,7 @@ public class ChatActivity extends AppCompatActivity {
 
         //skal laves til korrekte username
         //lav variabel der henter fra firebase on create ??
-        Message newMessage = new Message(thisUsername, currentdate.toString(), inputText);
+        Message newMessage = new Message(thisUsername, date, numericTimestamp, inputText);
 
         db.collection(diagnose.toLowerCase()).document(uniqueID)
                 .set(newMessage)
@@ -195,4 +199,4 @@ public class ChatActivity extends AppCompatActivity {
 
    
 
-}
+
