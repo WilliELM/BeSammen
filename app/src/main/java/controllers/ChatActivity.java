@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -68,7 +69,6 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
         itemList = new ArrayList<>();
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -121,12 +121,11 @@ public class ChatActivity extends AppCompatActivity {
                                     JSONObject jsonMessage = new JSONObject(document.getData());
                                     firebaseUsername = jsonMessage.getString("username");
                                     date = document.getDate("date");
-                                    //numericTimestamp = document.getLong("orderingDate");
+                                    numericTimestamp = document.getLong("orderingDate");
                                     String message = jsonMessage.getString("message");
                                     message = message.replaceAll("[\\n\\r]", ""); // Remove line breaks
                                     Message messageObj = new Message(firebaseUsername, date, numericTimestamp, message);
                                     itemList.add(messageObj);
-                                    System.out.println(messageObj);
 
                                 } catch (JSONException e) {
                                     Log.e(TAG, "Error parsing JSON", e);
@@ -164,8 +163,8 @@ public class ChatActivity extends AppCompatActivity {
         numericTimestampToString = numericTimestamp.toString();
 
 
-        System.out.println(numericTimestamp);
-        System.out.println(date);
+       // System.out.println(numericTimestamp);
+       // System.out.println(date);
 
 
 
