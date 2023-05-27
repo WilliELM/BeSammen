@@ -5,14 +5,19 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.besammen.R;
@@ -90,6 +95,17 @@ public class ChatActivity extends AppCompatActivity {
 
         FrameLayout testbtn = findViewById(R.id.layoutSend);
         View arrowbtn = findViewById(R.id.imageBack);
+        View informationbtn = findViewById(R.id.imageInfo);
+        informationbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                popUpInfo();
+                Toast.makeText(ChatActivity.this, "Information success", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         Intent intentToUserpage = new Intent(this, UserPage.class);
         arrowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +129,30 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    private void popUpInfo () {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.popupmessage);
+        TextView txt = (TextView)dialog.findViewById(R.id.TextForPopup);
+        TextView txtTitel = (TextView)dialog.findViewById(R.id.TitleForPopup);
+        txtTitel.setText("Information");
+        String textt  = (getString(R.string.beskrivelse_information));
+
+        Spanned formattedBeskrivelse = Html.fromHtml(textt);
+        txt.setText(formattedBeskrivelse);
+        dialog.show();
+
+        CheckBox checkBox = dialog.findViewById(R.id.checkBox);
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                Toast.makeText(ChatActivity.this, "VIRKER", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
     private void getMessagesTest() {

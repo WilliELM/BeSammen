@@ -7,5 +7,21 @@
         <item>Modermærkekræft</item>
         <item>Prostatakræft</item>
     </string-array>
+    <string name="beskrivelse_information">
+<![CDATA[
+Dette er en støttegruppe for brystkræft. Vi lægger stor vægt på at opretholde den gode tone i vores chatrum.<br/>
+Respekt, empati og venlighed er nøgleord, der definerer vores samfund. Vi opfordrer alle til at behandle hinanden med respekt og undgå nedladende eller stødende sprog.<br/>
+Vi er her for at støtte og opmuntre hinanden i vores rejse mod helbredelse og livskvalitet.<br/><br/>
+
+Når du deltager i chatrummet, kan du finde inspiration til spørgsmål, der kan starte meningsfulde samtaler med andre patienter. Her er nogle eksempler:<br/>
+<ul>
+<li>"Hvilke metoder eller strategier har du fundet nyttige i forhold til at håndtere bivirkninger fra behandlingen?"</li>
+<li>"Hvilke metoder eller strategier har du fundet nyttige i forhold til at håndtere bivirkninger fra behandlingen?"</li>
+<li>"Har du erfaring med alternative behandlingsmetoder eller kostændringer, der har hjulpet dig med at lindre symptomer eller øge dit velbefindende?"</li>
+</ul>
+Disse spørgsmål kan fungere som en åbning for givende samtaler og hjælpe med at skabe en dybere forbindelse mellem medlemmerne i vores chatrum.<br/>
+]]>
+</string>
+
 
 </resources>
