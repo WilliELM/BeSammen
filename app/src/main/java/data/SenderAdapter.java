@@ -61,7 +61,7 @@ public class SenderAdapter extends ArrayAdapter<Message> {
 
         // Set the values of the keys in the Message object
         //viewUsername.setText(message.getUsername());
-        viewDate.setText(formatDate(message.getDate()));
+        //viewDate.setText(formatDate(message.getDate()));
         viewMessage.setText(message.getMessage());
 
         return convertView;

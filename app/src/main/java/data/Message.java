@@ -1,15 +1,19 @@
 package data;
 
+import com.google.firebase.Timestamp;
+
 import java.util.Date;
 
 public class Message {
     String username;
-    String date;
+    Date date;
+    Long orderingDate;
     String message;
 
-    public Message(String username, String date, String message) {
+    public Message(String username, Date date, Long orderingDate, String message) {
         this.username = username;
         this.date = date;
+        this.orderingDate = orderingDate;
         this.message = message;
     }
 
@@ -21,12 +25,20 @@ public class Message {
         this.username = username;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Long getOrderingDate() {
+        return orderingDate;
+    }
+
+    public void setOrderingDate(Long orderingDate) {
+        this.orderingDate = orderingDate;
     }
 
     public String getMessage() {
@@ -41,7 +53,8 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "username='" + username + '\'' +
-                ", date='" + date + '\'' +
+                ", date=" + date +
+                ", orderingDate=" + orderingDate +
                 ", message='" + message + '\'' +
                 '}';
     }
