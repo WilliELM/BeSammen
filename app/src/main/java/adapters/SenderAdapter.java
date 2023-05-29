@@ -1,4 +1,4 @@
-package data;
+package adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
+import data.Message;
 
 public class SenderAdapter extends ArrayAdapter<Message> {
     ArrayList<Message> itemList2;

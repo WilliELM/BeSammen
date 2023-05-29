@@ -13,7 +13,6 @@ import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -22,10 +21,8 @@ import android.widget.Toast;
 
 import com.example.besammen.R;
 import com.example.besammen.databinding.ActivityChatBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.firestore.EventListener;
@@ -35,19 +32,12 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.Locale;
 import java.util.UUID;
 
-import data.CompositeAdapter;
+import adapters.CompositeAdapter;
 import data.Message;
-import data.ReceiverAdapter;
-import data.SenderAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;

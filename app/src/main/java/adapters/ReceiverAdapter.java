@@ -1,4 +1,4 @@
-package data;
+package adapters;
 
 import static androidx.databinding.DataBindingUtil.setContentView;
 
@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
+import data.Message;
 
 public class ReceiverAdapter extends ArrayAdapter<Message> {
     ArrayList<Message> itemList;

@@ -37,7 +37,8 @@
         android:textSize="@dimen/_13ssp"
         app:layout_constraintStart_toEndOf="@+id/imageProfil"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.75"/>
+        app:layout_constraintWidth_percent="0.75"
+        />
 
     <TextView
         android:id="@+id/dateandtime_id"
