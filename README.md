@@ -15,7 +15,7 @@ Udviklet til [BeSammen](https://besammen.com/).
 BeSammen er et fællesskab, hvor mennesker med samme diagnose mødes online i mindre grupper. I din tilknyttede BeSammen gruppe er der mulighed for trygt at dele tanker, følelser og erfaringer både før, under og efter et behandlingsforløb.
 
 # Rapport
-Se rapporten for projektet her. [Projekt][Besammen - Rapport (final).pdf](https://github.com/WilliELM/BeSammen/files/11593304/Besammen.-.Rapport.final.pdf)
+Se rapporten for projektet her. [Projekt](https://github.com/WilliELM/BeSammen/files/11593304/Besammen.-.Rapport.final.pdf)
 
 
 # Contribute
