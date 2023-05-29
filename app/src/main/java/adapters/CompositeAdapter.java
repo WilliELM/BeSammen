@@ -39,16 +39,16 @@ public class CompositeAdapter extends ArrayAdapter<Message> {
 
     @Override
     public int getViewTypeCount() {
-        return 2; // Number of different view types (for sent and received messages)
+        return 2; // Hvor mange viewtypes har vi, 1 for sender og 1 for receiver
     }
 
     @Override
     public int getItemViewType(int position) {
-        Message message = getItem(position);
-        if (message.getUsername().equals(thisUsername)) {
-            return 0; // View type for sent messages
-        } else {
-            return 1; // View type for received messages
+        Message message = getItem(position); //Hent positionen af den givne besked
+        if (message.getUsername().equals(thisUsername)) { //hvis beskeden er sendt af brugeren af appen, returner 0 for viewtype Sent messages.
+            return 0;
+        } else { //Ellers returner 1 for viewtype receiver messages
+            return 1;
         }
     }
 
@@ -63,12 +63,12 @@ public class CompositeAdapter extends ArrayAdapter<Message> {
         int viewType = getItemViewType(position);
         Message message = getItem(position);
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
+            LayoutInflater inflater = LayoutInflater.from(getContext()); // hvis convertview er nul, så inflate layoutet.
             if (viewType == 0) {
-                convertView = inflater.inflate(layoutItemSent, parent, false);
+                convertView = inflater.inflate(layoutItemSent, parent, false); //Hvis getItemViewtype returnerer 0 inflate layout for sender
             } else {
-                convertView = inflater.inflate(layoutItemReceived, parent, false);
-                TextView viewUsername = convertView.findViewById(R.id.username_id);
+                convertView = inflater.inflate(layoutItemReceived, parent, false);//Hvis getItemViewtype returnere 1 inflate layout for receiver
+                TextView viewUsername = convertView.findViewById(R.id.username_id); //For receiver skal vi også have username med, så vi kan se hvem der skriver
                 viewUsername.setText(message.getUsername());
 
             }
@@ -76,13 +76,13 @@ public class CompositeAdapter extends ArrayAdapter<Message> {
 
 
 
-        TextView viewMessage = convertView.findViewById(viewType == 0 ? textViewResourceIdSent : textViewResourceIdReceived);
-        TextView viewDate = convertView.findViewById(viewType == 0 ? R.id.textDateTime : R.id.dateandtime_id);
+        TextView viewMessage = convertView.findViewById(viewType == 0 ? textViewResourceIdSent : textViewResourceIdReceived);//Hvis viewtype = 0, brug textview Sent, ellers brug textview received
+        TextView viewDate = convertView.findViewById(viewType == 0 ? R.id.textDateTime : R.id.dateandtime_id); //Samme som ovenstående, bare for dato af beskeden der bliver sendt eller modtaget
         //TextView viewUsername = convertView.findViewById(viewType == 1 ? R.id.username_id : R.id.username_id);
 
         viewMessage.setText(message.getMessage());
         //System.out.println(viewDate);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss - dd-MM-yyyy", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss - dd-MM-yyyy", Locale.getDefault()); //Nyt format så vores dato er læsbar
 
         String formattedDate = sdf.format(message.getDate());
         viewDate.setText(formattedDate);

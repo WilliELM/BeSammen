@@ -71,7 +71,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-
+        //Cached brugernavn og diagnose, som bruges til at query databasen for hvilket chatrum vi skal bruge, samt for at vide hvilke layout der skal bruges i chatten.
         SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
         SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);
 
@@ -147,9 +147,9 @@ public class ChatActivity extends AppCompatActivity {
     }
     private void getMessagesTest() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection(diagnose.toLowerCase())
-                .orderBy("orderingDate", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection(diagnose.toLowerCase())//Hent chatrummet efter hvilken diagnose brugeren har valgt i appen
+                .orderBy("orderingDate", Query.Direction.ASCENDING)//OrderBy datoen sendt
+                .addSnapshotListener(new EventListener<QuerySnapshot>() { //snapshotlistener til realtime updates af chatten
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (error != null) {
@@ -162,12 +162,12 @@ public class ChatActivity extends AppCompatActivity {
 
                             for (QueryDocumentSnapshot document : value) {
                                 try {
-                                    JSONObject jsonMessage = new JSONObject(document.getData());
+                                    JSONObject jsonMessage = new JSONObject(document.getData());//Bruger her json til at parse det data vi får fra databasen
                                     firebaseUsername = jsonMessage.getString("username");
                                     date = document.getDate("date");
                                     numericTimestamp = document.getLong("orderingDate");
                                     String message = jsonMessage.getString("message");
-                                    message = message.replaceAll("[\\n\\r]", ""); // Remove line breaks
+                                    message = message.replaceAll("[\\n\\r]", ""); // Fjerner linebreaks og gør beskeden læsbar
                                     Message messageObj = new Message(firebaseUsername, date, numericTimestamp, message);
                                     itemList.add(messageObj);
 
@@ -177,10 +177,10 @@ public class ChatActivity extends AppCompatActivity {
                             }
 
 
-                            if (compositeAdapter == null) {
+                            if (compositeAdapter == null) { //Hvis vi ikke har kørt adapteren, så skal den køre og initialisere vores binding.containerMessages
                                 compositeAdapter = new CompositeAdapter(ChatActivity.this, R.layout.item_container_sent_message, R.id.textMessage, R.layout.item_container_recieved_message, R.id.texmessage_id, itemList, thisUsername);
                                 binding.containerMessages.setAdapter(compositeAdapter);
-                            } else {
+                            } else { //Ellers opdater listen
                                 compositeAdapter.notifyDataSetChanged();
                             }
                         }
@@ -203,12 +203,12 @@ public class ChatActivity extends AppCompatActivity {
 
         //Date
         date = new Date();
-        numericTimestamp = date.getTime();
+        numericTimestamp = date.getTime(); //For at kunne order by date, skal vi have det numeriske timestamp af datoen, fordi ellers vil den ikke order listen korrekt
         numericTimestampToString = numericTimestamp.toString();
 
 
-       // System.out.println(numericTimestamp);
-       // System.out.println(date);
+        // System.out.println(numericTimestamp);
+        // System.out.println(date);
 
 
 
@@ -217,8 +217,7 @@ public class ChatActivity extends AppCompatActivity {
         String uniqueID = UUID.randomUUID().toString();
 
 
-        //skal laves til korrekte username
-        //lav variabel der henter fra firebase on create ??
+
         Message newMessage = new Message(thisUsername, date, numericTimestamp, inputText);
 
         db.collection(diagnose.toLowerCase()).document(uniqueID)
@@ -240,6 +239,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 }
 
-   
+
+
 
 
