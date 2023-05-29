@@ -18,7 +18,7 @@ import com.example.besammen.databinding.ActivityUserPageBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class UserPage extends AppCompatActivity implements Userlistener {
+public class UserPage extends AppCompatActivity {
     private ArrayList<UserToFirebase> itemList;
     ActivityUserPageBinding binding;
     Button logOutAndClearCacheBtn;
@@ -114,8 +114,5 @@ public class UserPage extends AppCompatActivity implements Userlistener {
         return;
     }
 
-    @Override
-    public void onUserClicked(User user) {
 
-    }
 }

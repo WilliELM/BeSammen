@@ -16,7 +16,6 @@ import com.example.besammen.R;
 
 import java.util.ArrayList;
 
-import controllers.Userlistener;
 import data.UserToFirebase;
 
 public class GroupAdapter extends ArrayAdapter<UserToFirebase> {
