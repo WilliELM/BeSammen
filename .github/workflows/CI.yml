@@ -40,7 +40,7 @@ jobs:
            git push origin ${{ github.ref }}:${TARGET_BRANCH}
            
       - name: Delete issue branch
-        if: success()
+        if: startsWith(github.ref, 'refs/heads/issue/') && github.event_name == 'push'
         run: |
           set -ex
           git push origin --delete "${GITHUB_REF#refs/heads/}"
