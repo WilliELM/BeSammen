@@ -1,6 +1,9 @@
 name: GitHub Tester
 run-name: ${{ github.actor }} is testing
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - master
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
