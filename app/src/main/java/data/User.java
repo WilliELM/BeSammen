@@ -6,6 +6,10 @@ public class User {
     public String eMail;
     public String godkendtPassword;
 
+    public User () {
+
+
+    }
 
     public User(String username, String eMail, String godkendtPassword) {
         this.username = username;
