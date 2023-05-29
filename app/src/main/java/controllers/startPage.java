@@ -70,7 +70,6 @@ public class startPage extends AppCompatActivity {
         ///////////// DIAGNOSE VALG /////////////
 
         spinnerDiagnose = findViewById(R.id.spinnerDiagnose);
-        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.diagnoseArray, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
 
         adapter.add(getString(R.string.placeholder_diagnose));
@@ -97,7 +96,6 @@ public class startPage extends AppCompatActivity {
             }
         });
 
-        //userToFirebase.setDiagnose(spinnerDiagnose.toString());
         System.out.println(diagnose);
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("users");
         Button submitData = findViewById(R.id.submitDataBtn);
@@ -129,27 +127,7 @@ public class startPage extends AppCompatActivity {
             }
         });
 
-        /*
-        if (currentUser == null){
-            Intent intentToLogIn = new Intent(startPage.this, logIn.class);
-            startActivity(intentToLogIn);
-            finish();
-            return;
-        }
-
-         */
-
         mAuth = FirebaseAuth.getInstance();
-
-        /*
-        tvUsername = findViewById(R.id.tvUsername);
-        tvEmail = findViewById(R.id.tvEmail);
-        tvGodkendtPassword = findViewById(R.id.tvGodkendtPassword);
-
-
-
-
-         */
 
         Button logOutBtn = findViewById(R.id.logOutBtn);
         logOutBtn.setOnClickListener(new View.OnClickListener() {

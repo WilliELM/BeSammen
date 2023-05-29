@@ -28,10 +28,7 @@ public class frontPage extends AppCompatActivity {
         boolean firstTimeLaunch = preferences.getBoolean("firstTimeLaunch", true);
         if(firstTimeLaunch){
             System.out.println("FØRSTE GANGS USER");
-            System.out.println("FØRSTE GANGS USER");
-            System.out.println("FØRSTE GANGS USER");
-            System.out.println("FØRSTE GANGS USER");
-            System.out.println("FØRSTE GANGS USER");
+
         }
         else{
             Intent intent = new Intent(this, logIn.class);
@@ -39,15 +36,7 @@ public class frontPage extends AppCompatActivity {
             finish();
         }
 
-        /*
 
-        Button registrerBtn = findViewById(R.id.registerBtn);
-        registrerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToSignUp();
-            }
-        });*/
     }
     public void goToSignUp(View v){
         Intent intentToSignUp = new Intent(this, signUp.class);

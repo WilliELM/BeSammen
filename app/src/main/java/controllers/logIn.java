@@ -41,16 +41,7 @@ public class logIn extends AppCompatActivity {
 
         checkBox();
 
-/*
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() != null){
-            finish();
-            return;
-        }
 
-
-
- */
         mAuth =FirebaseAuth.getInstance();
 
         Button logInBtn = findViewById(R.id.logInBtn);
@@ -121,10 +112,7 @@ public class logIn extends AppCompatActivity {
     private void redirectToRegister(){
         Intent intentToRegister = new Intent(this, signUp.class);
         startActivity(intentToRegister);
-       /*
-        finish();
 
-        */
     }
 
     private void redirectToStartPage(){
@@ -135,9 +123,5 @@ public class logIn extends AppCompatActivity {
         intentToStartPage.putExtra("eMail", autologinEmail);
         startActivity(intentToStartPage);
 
-        /*
-        finish();
-
-         */
     }
 }

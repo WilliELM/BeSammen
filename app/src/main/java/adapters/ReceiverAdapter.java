@@ -32,28 +32,6 @@ public class ReceiverAdapter extends ArrayAdapter<Message> {
         thisUsername = username;
     }
 
-    /*@NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        // skal erstattes med group
-        Message message = getItem(position);
-        if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_container_recieved_message,parent,false);
-            //select forskellige views
-            //ImageView groupPic =  convertView.findViewById(R.id.pictures);
-            TextView ViewMessage = convertView.findViewById(R.id.texmessage_id);
-            TextView ViewDate = convertView.findViewById(R.id.dateandtime_id);
-
-
-            //set views til brugerens valg
-            ViewMessage.setText(message.getMessage());
-            ViewDate.setText(message.getDate());
-
-            //notifyDataSetChanged();
-        }
-        return super.getView(position, convertView, parent);
-
-    }*/
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -67,7 +45,7 @@ public class ReceiverAdapter extends ArrayAdapter<Message> {
         TextView viewDate = convertView.findViewById(R.id.dateandtime_id);
         TextView viewMessage = convertView.findViewById(R.id.texmessage_id);
 
-        // Set the values of the keys in the Message object
+        // Set værdier
         viewUsername.setText(message.getUsername());
         //viewDate.setText(formatDate(message.getDate()));
         viewMessage.setText(message.getMessage());
@@ -82,7 +60,7 @@ public class ReceiverAdapter extends ArrayAdapter<Message> {
             TextView viewDate = convertView.findViewById(R.id.textDateTime);
             TextView viewMessage = convertView.findViewById(R.id.textMessage);
 
-            // Set the values of the keys in the Message object
+            // Set værdier
             //viewUsername.setText(message.getUsername());
            // viewDate.setText(message.getDate());
             viewMessage.setText(message.getMessage());
@@ -99,7 +77,7 @@ public class ReceiverAdapter extends ArrayAdapter<Message> {
             return outputFormat.format(parsedDate);
         } catch (ParseException e) {
             e.printStackTrace();
-            return date; // Return the original date if there is an error
+            return date;
         }
     }
 }

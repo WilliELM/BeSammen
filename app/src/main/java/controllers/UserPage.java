@@ -37,30 +37,6 @@ public class UserPage extends AppCompatActivity {
         binding.groupContainer.setAdapter(groupAdapter);
         binding.getRoot();
 
-        Intent intentFromStartPage = getIntent();
-
-
-       /* db.collection(diagnose)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-*/
 
         SharedPreferences diagnoseCache = getSharedPreferences("CachedDiagnose", MODE_PRIVATE);
         SharedPreferences savedUsername = getSharedPreferences("CachedUsername", MODE_PRIVATE);

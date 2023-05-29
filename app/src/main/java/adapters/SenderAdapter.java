@@ -27,28 +27,7 @@ public class SenderAdapter extends ArrayAdapter<Message> {
         super(context, resource, textViewResourceId, objects);
     }
 
-    /*@NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        // skal erstattes med group
-        Message message = getItem(position);
-        if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_container_recieved_message,parent,false);
-            //select forskellige views
-            //ImageView groupPic =  convertView.findViewById(R.id.pictures);
-            TextView ViewMessage = convertView.findViewById(R.id.texmessage_id);
-            TextView ViewDate = convertView.findViewById(R.id.dateandtime_id);
 
-
-            //set views til brugerens valg
-            ViewMessage.setText(message.getMessage());
-            ViewDate.setText(message.getDate());
-
-            //notifyDataSetChanged();
-        }
-        return super.getView(position, convertView, parent);
-
-    }*/
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -61,7 +40,7 @@ public class SenderAdapter extends ArrayAdapter<Message> {
         TextView viewDate = convertView.findViewById(R.id.textDateTime);
         TextView viewMessage = convertView.findViewById(R.id.textMessage);
 
-        // Set the values of the keys in the Message object
+        // Set værdi
         //viewUsername.setText(message.getUsername());
         //viewDate.setText(formatDate(message.getDate()));
         viewMessage.setText(message.getMessage());

@@ -27,16 +27,6 @@ public class SelectedGroup extends AppCompatActivity {
         String diagnose = diagnoseCache.getString("diagnoseCache","");
 
         binding.diagnose.setText(diagnose);
-        /*Intent intent = this.getIntent();
-        if (intent != null){
 
-            String diagnose = intent.getStringExtra("diagnose");
-            binding.diagnose.setText(diagnose);
-
-            //ImageView imageView = findViewById(R.id.imageOfMovie);
-           // Glide.with(imageView.getContext()).load(picture).into(imageView);
-
-
-        }*/
     }
 }

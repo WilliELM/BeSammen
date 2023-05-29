@@ -23,7 +23,7 @@ import data.User;
 public class signUp extends AppCompatActivity {
 
     // https://www.youtube.com/watch?v=LeIFNsiKmVY&ab_channel=BoostMyTool
-
+    // brugt til auth
     private FirebaseAuth mAuth;
     private String userName;
     private String autologinEmail;
@@ -37,13 +37,7 @@ public class signUp extends AppCompatActivity {
         // intialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
         // Hvis brugeren allerede er authenticated, så lukker man den her aktivitet
-        /*
-        if (mAuth.getCurrentUser() != null ){
-            finish();
-            return;
-        }
 
-         */
 
         Button registrerBtn = findViewById(R.id.registrerBtn);
         registrerBtn.setOnClickListener(new View.OnClickListener() {
@@ -132,10 +126,7 @@ public class signUp extends AppCompatActivity {
         intentToLogIn.putExtra("password", autologinPassword);
         startActivity(intentToLogIn);
         System.out.println(userName);
-        System.out.println(userName);
-        System.out.println(userName);
-        System.out.println(userName);
-        System.out.println(userName);
+
 
     }
 }

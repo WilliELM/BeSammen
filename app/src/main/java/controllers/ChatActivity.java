@@ -110,8 +110,7 @@ public class ChatActivity extends AppCompatActivity {
         testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Perform actions when the ImageView is clicked
-                // For example, show a toast message
+                // Perform actions when clicked
                 sendMessage();
                 Toast.makeText(ChatActivity.this, "VIRKER", Toast.LENGTH_SHORT).show();
 
@@ -205,12 +204,6 @@ public class ChatActivity extends AppCompatActivity {
         date = new Date();
         numericTimestamp = date.getTime(); //For at kunne order by date, skal vi have det numeriske timestamp af datoen, fordi ellers vil den ikke order listen korrekt
         numericTimestampToString = numericTimestamp.toString();
-
-
-        // System.out.println(numericTimestamp);
-        // System.out.println(date);
-
-
 
 
         //Unique ID
