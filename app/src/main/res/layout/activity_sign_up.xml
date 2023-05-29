@@ -12,9 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="277dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="match_parent"
@@ -71,28 +77,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="22dp"
+            android:background="@drawable/buttondesignfrontpage"
             android:text="Registrer"
             android:textColor="@color/black"
-            android:background="@drawable/buttondesignfrontpage"
-            app:backgroundTint="@null"/>
+            app:backgroundTint="@null" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Har du allerede en konto?"
             android:gravity="center"
-            android:textStyle="italic"/>
+            android:text="Har du allerede en konto?"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/redirectToLogInBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Log-in"
             android:background="@drawable/buttondesignfrontpage"
-            app:backgroundTint = "@null"
-            android:textColor="@color/black"/>
+            android:text="Log-in"
+            android:textColor="@color/black"
+            app:backgroundTint="@null" />
 
 
     </LinearLayout>
